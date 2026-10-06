@@ -18,6 +18,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
+
 const Login = () => {
   // Form state
   const [formData, setFormData] = useState({
@@ -56,7 +58,7 @@ const Login = () => {
       // ── Send login request to the backend ──
       // POST /api/auth/login with email and password
       const response = await axios.post(
-        'http://localhost:5000/api/auth/login',
+        `${BASE_URL}/auth/login`,
         {
           email: formData.email,
           password: formData.password,

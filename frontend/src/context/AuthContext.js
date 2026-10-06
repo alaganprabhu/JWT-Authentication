@@ -24,6 +24,9 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
+console.log(BASE_URL,'NASEEEEEEE')
+
 // ── Create the context ──
 const AuthContext = createContext();
 
@@ -59,7 +62,7 @@ export const AuthProvider = ({ children }) => {
         try {
           // Verify the token is still valid by calling the /api/profile endpoint
           // This sends the token in the Authorization header
-          const response = await axios.get('http://localhost:5000/api/profile', {
+          const response = await axios.get(`${BASE_URL}/profile`, {
             headers: {
               Authorization: `Bearer ${savedToken}`,
             },

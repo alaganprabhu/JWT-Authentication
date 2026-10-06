@@ -20,6 +20,9 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
+console.log(BASE_URL,'NASEEEEEEE')
+
 const Dashboard = () => {
   // Get user data, token, and logout function from AuthContext
   const { user, token, logout } = useAuth();
@@ -43,7 +46,7 @@ const Dashboard = () => {
         //   2. Verify it using jwt.verify()
         //   3. If valid, allow the request through
         //   4. If invalid, return a 401 error
-        const response = await axios.get('http://localhost:5000/api/profile', {
+        const response = await axios.get(`${BASE_URL}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
